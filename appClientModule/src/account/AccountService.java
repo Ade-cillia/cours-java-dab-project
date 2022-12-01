@@ -7,7 +7,6 @@ import src.payment.Payment;
  */
 public class AccountService implements AccountInterface {
 	private static AccountService instance = new AccountService();
-	public String value;
 
 	/**
 	 * 
