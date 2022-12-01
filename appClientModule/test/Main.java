@@ -1,11 +1,14 @@
+package test;
 
 public class Main {
 	/**
+	 * Start all tests
+	 * 
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		System.out.println("Start DAB app");
-
+		System.out.println("Start all Tests");
+		TestIHM.lunchTest();
 	}
 
 	/*
@@ -16,5 +19,4 @@ public class Main {
 	public Main() {
 		super();
 	}
-
 }
