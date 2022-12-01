@@ -1,25 +1,27 @@
 package src.payment;
 
+import src.account.Account;
+
 public class Payment {
 	private String m_type = "cash";
 	private double m_amount;
-	private String m_nameFrom;
-	private String m_nameTo;
+	private Account m_accountFrom;
+	private Account m_accountTo;
 
 	public Payment(double p_amount, String p_type){
 		this.m_amount = p_amount;
 		this.m_type = p_type;
 	};
-	public Payment(double p_amount, String p_type, String p_nameFrom){
+	public Payment(double p_amount, String p_type,  Account p_accountFrom){
 		this.m_amount = p_amount;
 		this.m_type = p_type;
-		this.m_nameFrom = p_nameFrom;
+		this.m_accountFrom = p_accountFrom;
 	};
-	public Payment(double p_amount,String p_type, String p_nameFrom,String m_nameTo){
+	public Payment(double p_amount,String p_type, Account p_accountFrom, Account p_accountTo){
 		this.m_amount = p_amount;
 		this.m_type = p_type;
-		this.m_nameFrom = p_nameFrom;
-		this.m_nameTo = m_nameTo;
+		this.m_accountFrom = p_accountFrom;
+		this.m_accountTo = p_accountTo;
 	};
 
 	// ---------- Getters ---------- //
@@ -40,15 +42,15 @@ public class Payment {
 	/**
 	 * @return
 	 */
-	public String getNameFrom() {
-		return m_nameFrom;
+	public Account getAccountFrom() {
+		return m_accountFrom;
 	}
 
 	/**
 	 * @return
 	 */
-	public String getNameTo() {
-		return m_nameTo;
+	public Account getAccountTo() {
+		return m_accountTo;
 	}
 
 	// ---------- Setters ---------- //
@@ -63,21 +65,21 @@ public class Payment {
 	/**
 	 * @param m_amount
 	 */
-	public void setAmount(int m_amount) {
-		this.m_amount = m_amount;
+	public void setAmount(int p_amount) {
+		this.m_amount = p_amount;
 	}
 
 	/**
 	 * @param m_nameFrom
 	 */
-	public void setNameFrom(String m_nameFrom) {
-		this.m_nameFrom = m_nameFrom;
+	public void setAccountFrom(Account p_accountFrom) {
+		this.m_accountFrom = p_accountFrom;
 	}
 
 	/**
 	 * @param m_nameTo
 	 */
-	public void setNameTo(String m_nameTo) {
-		this.m_nameTo = m_nameTo;
+	public void setAccountTo(Account p_accountTo) {
+		this.m_accountTo = p_accountTo;
 	}
 }

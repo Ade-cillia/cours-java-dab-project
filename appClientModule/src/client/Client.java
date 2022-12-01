@@ -10,17 +10,18 @@ public class Client implements ClientUserInterface {
 	private String m_lastName = "DE CILLIA";
 	private String m_firstName = "Aurélien";
 	private String m_bankName = "Credit agricole";
-	private ArrayList<Account> m_listAccount = new ArrayList<Account>(); // Max 100 account
+	private ArrayList<Account> m_listAccount = new ArrayList<Account>();
 
 	public Client() {
 	}
+
 
 	/* (non-Javadoc)
 	 * @see src.client.ClientUserInterface#allData()
 	 */
 	public String allData() {
 		StringBuilder allData = new StringBuilder()
-		.append("ClientId : ").append(this.m_uuid).append("\n")
+		.append("\nClientId : ").append(this.m_uuid).append("\n")
 		.append("Nom : ").append(this.m_lastName).append("\n")
 		.append("Prénom : ").append(this.m_firstName).append("\n")
 		.append("Nom de la banque : ").append(this.m_bankName).append("\n")
