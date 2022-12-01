@@ -73,7 +73,7 @@ public abstract class TestIHM {
 			// deposit Money
 			System.out.println("----");
 			Payment cash1 = new Payment(10.99, "cash");
-			accountService.depositMoney(getAccount2, cash1);
+			System.out.println(accountService.depositMoney(getAccount2, cash1));
 			System.out.println("----");
 			System.out.println(getAccount2.allData());
 			System.out.println("----");
@@ -82,7 +82,7 @@ public abstract class TestIHM {
 			// withraw
 			System.out.println("----");
 			Payment cash2 = new Payment(5.22, "cash");
-			accountService.withdrawMoney(getAccount2, cash2);
+			System.out.println(accountService.withdrawMoney(getAccount2, cash2));
 			System.out.println("----");
 			System.out.println(getAccount2.allData());
 			System.out.println("----");
@@ -92,7 +92,7 @@ public abstract class TestIHM {
 			// (Test exclusife) withdraw with amount more than overdraftPossibility
 			System.out.println("----");
 			Payment cash3 = new Payment(156.65, "cash");
-			accountService.withdrawMoney(getAccount2, cash3);
+			System.out.println(accountService.withdrawMoney(getAccount2, cash3));
 			System.out.println("----");
 			System.out.println(getAccount2.allData());
 			System.out.println("----");
@@ -108,7 +108,7 @@ public abstract class TestIHM {
 		client.addAccount(thirdAccount);
 		try {
 			Payment cash4 = new Payment(3.50, "cash");
-			accountService.depositMoney(thirdAccount, cash4);
+			System.out.println(accountService.depositMoney(thirdAccount, cash4));
 		} catch (Exception e) {
 			System.err.println(e);
 		}
@@ -117,13 +117,13 @@ public abstract class TestIHM {
 		// do an Transaction
 		try {
 			Payment transfert1 = new Payment(1, "transfert", thirdAccount, firstAccount);
-			accountService.transactionMoney(transfert1);
+			System.out.println(accountService.transactionMoney(transfert1));
 			System.out.println(client.allData());
 			System.out.println("----");
 
 			// (Test exclusife) too much amount
 			Payment transfert2 = new Payment(10000, "transfert", thirdAccount, firstAccount);
-			accountService.transactionMoney(transfert2);
+			System.out.println(accountService.transactionMoney(transfert2));
 			System.out.println(client.allData());
 			System.out.println("----");
 		} catch (Exception e) {
@@ -135,7 +135,7 @@ public abstract class TestIHM {
 
 			System.out.println("----");
 			Payment cheque1 = new Payment(2, "cheque", thirdAccount, firstAccount);
-			accountService.transactionMoney(cheque1);
+			System.out.println(accountService.transactionMoney(cheque1));
 			System.out.println(client.allData());
 			
 		return;

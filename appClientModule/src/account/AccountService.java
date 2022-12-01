@@ -37,13 +37,13 @@ public class AccountService implements AccountInterface {
 		} else if (p_account.getBalance() < 0) {
 			throw new Exception("amount need to be more than 0");
 		}
-		System.out.println(new StringBuilder("Account To ").append(p_account.getBalance()).append(" euro").toString());
-		System.out.println(new StringBuilder("Deposit of ").append(amountPayment).append(" euro in account").toString());
+		StringBuilder strResult = new StringBuilder("Account To ").append(p_account.getBalance()).append(" euro\n");
+		strResult.append("Deposit of ").append(amountPayment).append(" euro in account\n");
 		
 		// deposit
 		p_account.depositMoney(amountPayment);
-		System.out.println(new StringBuilder("Account To now ").append(p_account.getBalance()).append(" euro\n").toString());
-		return "success";
+		strResult.append("Account To now ").append(p_account.getBalance()).append(" euro\n");
+		return strResult.toString();
 	}
 
 	/*
@@ -59,15 +59,16 @@ public class AccountService implements AccountInterface {
 		if (p_account == null) {
 			throw new Exception("account is null");
 		}else if (p_account.getBalance()-amountPayment < -p_account.getOverdraftPossibility()) {
+			// if balance-amountPayment < -overdraft
 			throw new Exception("withdraw has been refuted, the amount has more than your overdraft possibility");
 		}
-		System.out.println(new StringBuilder("Account From ").append(p_account.getBalance()).append(" euro").toString());
-		System.out.println(new StringBuilder("Withdraw ").append(amountPayment).append("euro from account").toString());
+		StringBuilder strResult = new StringBuilder("Account From ").append(p_account.getBalance()).append(" euro\n");
+		strResult.append("Withdraw ").append(amountPayment).append("euro from account\n");
 
 		// withdraw
 		p_account.withdrawMoney(amountPayment);
-		System.out.println(new StringBuilder("Account From now ").append(p_account.getBalance()).append(" euro\n").toString());
-		return "success";
+		strResult.append("Account From now ").append(p_account.getBalance()).append(" euro\n\n");
+		return strResult.toString();
 	}
 
 	/* (non-Javadoc)
@@ -95,17 +96,20 @@ public class AccountService implements AccountInterface {
 			throw new Exception("amount need to deposite for p_accountTo must be more than 0 ");
 		}
 		// p_accountFrom
-		System.out.println(new StringBuilder("Account From :").append(accountFrom.getBalance()).append(" euro").toString());
-		System.out.println(new StringBuilder("Withdraw ").append(amountPayment).append(" euro from account").toString());
 		accountFrom.withdrawMoney(amountPayment);
-		System.out.println(new StringBuilder("Account From now ").append(accountFrom.getBalance()).append(" euro\n").toString());
+
+		StringBuilder strResult = new StringBuilder("Account From :").append(accountFrom.getBalance()).append(" euro\n");
+		strResult.append("Withdraw : ").append(amountPayment).append(" euro from account\n");
+		strResult.append("Account From now ").append(accountFrom.getBalance()).append(" euro\n\n");
 		
 		// p_accountTo
-		System.out.println(new StringBuilder("Account To ").append(accountTo.getBalance()).append(" euro").toString());
-		System.out.println(new StringBuilder("Deposit of ").append(amountPayment).append(" euro in account").toString());
 		accountTo.depositMoney(amountPayment);
-		System.out.println(new StringBuilder("Account To now ").append(accountTo.getBalance()).append(" euro\n").toString());
+
+		strResult.append("Account To ").append(accountTo.getBalance()).append(" euro\n");
+		strResult.append("Deposit : ").append(amountPayment).append(" euro in account\n");
+		strResult.append("Account To now ").append(accountTo.getBalance()).append(" euro\n");
 		
-		return "succes";
+		// TODO: refactor for call directly himself 
+		return strResult.toString();
 	}
 }
