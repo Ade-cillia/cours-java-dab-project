@@ -8,15 +8,37 @@ public class Payment {
 	private Account m_accountFrom;
 	private Account m_accountTo;
 
+	// ---------- Constructors ---------- //
+
+	/**
+	 * ctor
+	 * @param p_amount
+	 * @param p_type
+	 */
 	public Payment(double p_amount, String p_type){
 		this.m_amount = p_amount;
 		this.m_type = p_type;
 	};
+
+	/**
+	 * ctor
+	 * @param p_amount
+	 * @param p_type
+	 * @param p_accountFrom
+	 */
 	public Payment(double p_amount, String p_type,  Account p_accountFrom){
 		this.m_amount = p_amount;
 		this.m_type = p_type;
 		this.m_accountFrom = p_accountFrom;
 	};
+
+	/**
+	 * ctor
+	 * @param p_amount
+	 * @param p_type
+	 * @param p_accountFrom
+	 * @param p_accountTo
+	 */
 	public Payment(double p_amount,String p_type, Account p_accountFrom, Account p_accountTo){
 		this.m_amount = p_amount;
 		this.m_type = p_type;

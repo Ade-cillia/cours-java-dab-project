@@ -22,36 +22,40 @@ public abstract class TestIHM {
 	 * @return void
 	 */
 	public static void lunchTest() {
+		System.out.println("Start test TestIHM");
 		AccountService accountService = AccountService.getInstance();
 
 		// create account instance
 		System.out.println("-------------");
 		Account firstAccount = new Account();
-		System.out.println(firstAccount.allData());
+		System.out.println(firstAccount);
 
 		// create client instance for admin
 		System.out.println("-------------");
 		Client client = new Client();
-		System.out.println(client.allData());
+		System.out.println(client);
 
 		// create client instance manipulate by user
 		System.out.println("-------------");
 		ClientUserInterface clientUserInterface = new Client();
-		System.out.println(client.allData());
+		System.out.println(client);
+
 		// access ok
-		clientUserInterface.allData();
-		// access denied because addAccount is not in ClientUserInterface (is only for
-		// admin) : clientUserInterface.addAccount(firstAccount);
+		System.out.println(clientUserInterface.getBankName());
+		
+		// access denied :
+		// clientUserInterface.addAccount();
+		// access denied because addAccount is not in ClientUserInterface (is only for "admin"/the complet instance)
 
 		// insert account in client
 		System.out.println("-------------");
 		client.addAccount(firstAccount);
-		System.out.println(client.allData());
+		System.out.println(client);
 
 		// create account directly in client
 		System.out.println("-------------");
 		client.addAccount();
-		System.out.println(client.allData());
+		System.out.println(client);
 
 		// Get on Account by uuid
 		System.out.println("-------------");
@@ -59,7 +63,7 @@ public abstract class TestIHM {
 		try {
 			UUID simulateUUIDCard = UUID.randomUUID();
 			getAccount = client.getAccountByUUID(simulateUUIDCard);
-			System.out.println(getAccount.allData());
+			System.out.println(getAccount);
 		} catch (Exception e) {
 			System.err.println(e);
 		}
@@ -68,25 +72,25 @@ public abstract class TestIHM {
 		try {
 			UUID firstAccountUUID = firstAccount.getUUID();
 			getAccount2 = client.getAccountByUUID(firstAccountUUID);
-			System.out.println(getAccount2.allData());
+			System.out.println(getAccount2);
 
 			// deposit Money
 			System.out.println("----");
 			Payment cash1 = new Payment(10.99, "cash");
 			System.out.println(accountService.depositMoney(getAccount2, cash1));
 			System.out.println("----");
-			System.out.println(getAccount2.allData());
+			System.out.println(getAccount2);
 			System.out.println("----");
-			System.out.println(client.allData());
+			System.out.println(client);
 
 			// withraw
 			System.out.println("----");
 			Payment cash2 = new Payment(5.22, "cash");
 			System.out.println(accountService.withdrawMoney(getAccount2, cash2));
 			System.out.println("----");
-			System.out.println(getAccount2.allData());
+			System.out.println(getAccount2);
 			System.out.println("----");
-			System.out.println(client.allData());
+			System.out.println(client);
 			System.out.println("----");
 
 			// (Test exclusife) withdraw with amount more than overdraftPossibility
@@ -94,9 +98,9 @@ public abstract class TestIHM {
 			Payment cash3 = new Payment(156.65, "cash");
 			System.out.println(accountService.withdrawMoney(getAccount2, cash3));
 			System.out.println("----");
-			System.out.println(getAccount2.allData());
+			System.out.println(getAccount2);
 			System.out.println("----");
-			System.out.println(client.allData());
+			System.out.println(client);
 			System.out.println("----");
 		} catch (Exception e) {
 			System.err.println(e);
@@ -112,19 +116,19 @@ public abstract class TestIHM {
 		} catch (Exception e) {
 			System.err.println(e);
 		}
-		System.out.println(client.allData());
+		System.out.println(client);
 
 		// do an Transaction
 		try {
 			Payment transfert1 = new Payment(1, "transfert", thirdAccount, firstAccount);
 			System.out.println(accountService.transactionMoney(transfert1));
-			System.out.println(client.allData());
+			System.out.println(client);
 			System.out.println("----");
 
 			// (Test exclusife) too much amount
 			Payment transfert2 = new Payment(10000, "transfert", thirdAccount, firstAccount);
 			System.out.println(accountService.transactionMoney(transfert2));
-			System.out.println(client.allData());
+			System.out.println(client);
 			System.out.println("----");
 		} catch (Exception e) {
 			System.err.println(e);
@@ -136,7 +140,7 @@ public abstract class TestIHM {
 			System.out.println("----");
 			Payment cheque1 = new Payment(2, "cheque", thirdAccount, firstAccount);
 			System.out.println(accountService.transactionMoney(cheque1));
-			System.out.println(client.allData());
+			System.out.println(client);
 			
 		return;
 		} catch (Exception e) {

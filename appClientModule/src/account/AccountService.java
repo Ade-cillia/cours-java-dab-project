@@ -6,20 +6,30 @@ import src.payment.Payment;
  * Singleton class
  */
 public class AccountService implements AccountInterface {
-	private static AccountService instance = new AccountService();
+	private static AccountService instance = null;
+
+	// ---------- Constructor ---------- //
 
 	/**
-	 * 
+	 * ctor
 	 */
 	private AccountService() {
 	}
+
+	// --------- Singleton instance --------- //
 
 	/**
 	 * @return
 	 */
 	public static AccountService getInstance() {
+		if (instance == null) {
+			instance = new AccountService();
+		}
 		return instance;
 	}
+	
+
+	// --------- Account manager --------- //
 
 	/*
 	 * (non-Javadoc)
@@ -94,14 +104,15 @@ public class AccountService implements AccountInterface {
 		} else if (accountTo.getBalance() < 0) {
 			throw new Exception("amount need to deposite for p_accountTo must be more than 0 ");
 		}
-		// p_accountFrom
+
+		// withdrawMoney for p_accountFrom
 		accountFrom.withdrawMoney(amountPayment);
 
 		StringBuilder strResult = new StringBuilder("Account From :").append(accountFrom.getBalance()).append(" euro\n");
 		strResult.append("Withdraw : ").append(amountPayment).append(" euro from account\n");
 		strResult.append("Account From now ").append(accountFrom.getBalance()).append(" euro\n\n");
 		
-		// p_accountTo
+		// depositMoney for p_accountTo
 		accountTo.depositMoney(amountPayment);
 
 		strResult.append("Account To ").append(accountTo.getBalance()).append(" euro\n");

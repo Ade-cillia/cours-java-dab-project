@@ -9,17 +9,21 @@ public class Account {
 	private double m_overdraftPossibility = 0.00;
 	private boolean m_actifAccount = false;
 	
+	// ---------- Constructor ---------- //
 
 	/**
 	 * ctor
 	 */
-	public Account() {
-	}
+	public Account() {}
 
-	/**
-	 * @return
+
+	// ---------- Override ---------- //
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
 	 */
-	public String allData() {
+	@Override
+	public String toString() {
 		StringBuilder allData = new StringBuilder();
 		allData.append("accountId : ").append(this.m_uuid).append("\n");
 		allData.append("Solde : ").append(this.m_balance).append(" euro\n");
@@ -28,6 +32,7 @@ public class Account {
 
 	}
 
+	// ---------- Account manager ---------- //
 
 	/**
 	 * @param p_amount
